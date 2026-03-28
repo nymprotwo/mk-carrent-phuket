@@ -69,7 +69,7 @@
     /* ═══ HERO ═══════════════════════════════════ */
     .hero {
       min-height: 100vh;
-      background: var(--dark);
+      background: linear-gradient(180deg, #0B0F1A 0%, #0F172A 55%, #111827 100%);
       display: grid; grid-template-columns: 1fr 1fr;
       align-items: center;
       padding: 100px 6% 0;
@@ -81,6 +81,11 @@
       background: radial-gradient(circle, rgba(26,86,219,0.18) 0%, transparent 70%);
       top: 50%; left: 30%; transform: translate(-50%, -50%);
       pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 120px; pointer-events: none;
+      background: linear-gradient(180deg, transparent 0%, #F3F4F6 100%);
     }
 
     .hero-left { position: relative; z-index: 2; padding-right: 48px; padding-bottom: 80px; }
@@ -188,8 +193,9 @@
 
     /* ═══ TRUST STRIP ════════════════════════════ */
     .trust-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+      background: #F3F4F6;
+      border-top: none;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
       padding: 40px 6%;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -214,8 +220,8 @@
     /* ═══ HOW IT WORKS ════════════════════════════ */
     .hiw-section {
       padding: 80px 6%;
-      background: var(--dark);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: linear-gradient(180deg, #0F172A 0%, #111827 100%);
+      border-bottom: none;
     }
     .hiw-head {
       text-align: center;
@@ -280,7 +286,7 @@
     .view-all:hover { gap: 8px; }
 
     /* ═══ CATEGORIES ═════════════════════════════ */
-    .categories-section { padding: 80px 6%; background: var(--white); }
+    .categories-section { padding: 80px 6%; background: #F3F4F6; }
 
     .categories-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
@@ -315,7 +321,7 @@
     .cat-card:hover .cat-arrow { background: var(--dark); color: white; transform: rotate(-30deg); }
 
     /* ═══ FLEET ══════════════════════════════════ */
-    .fleet-section { padding: 80px 6%; background: var(--off); }
+    .fleet-section { padding: 80px 6%; background: #F3F4F6; }
 
     .fleet-grid {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
@@ -411,7 +417,7 @@
 
     /* ═══ PROMO ══════════════════════════════════ */
     .promo-section {
-      background: var(--dark2);
+      background: linear-gradient(180deg, #111827 0%, #0F172A 100%);
       padding: 80px 6%;
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 60px; align-items: center;
@@ -484,7 +490,7 @@
     /* ═══ NEED MORE ══════════════════════════════ */
     .need-more {
       padding: 64px 6%;
-      background: var(--white);
+      background: #F3F4F6;
       border-top: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
     }
@@ -511,7 +517,7 @@
     .need-more-btn:hover { background: #1eba57; transform: translateY(-1px); }
 
     /* ═══ REVIEWS ════════════════════════════════ */
-    .reviews-section { padding: 80px 0; background: var(--white); overflow: hidden; }
+    .reviews-section { padding: 80px 0; background: #F3F4F6; overflow: hidden; }
     .reviews-section .section-head { padding: 0 6%; margin-bottom: 40px; }
 
     .reviews-track-wrap {
@@ -556,7 +562,7 @@
 
     /* ═══ FOOTER ═════════════════════════════════ */
     footer {
-      background: var(--dark); color: var(--white);
+      background: linear-gradient(180deg, #0F172A 0%, #0B0F1A 100%); color: var(--white);
       padding: 64px 6% 32px;
     }
     .footer-top {
