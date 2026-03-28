@@ -511,15 +511,34 @@
     .need-more-btn:hover { background: #1eba57; transform: translateY(-1px); }
 
     /* ═══ REVIEWS ════════════════════════════════ */
-    .reviews-section { padding: 80px 6%; background: var(--white); }
+    .reviews-section { padding: 80px 0; background: var(--white); overflow: hidden; }
+    .reviews-section .section-head { padding: 0 6%; margin-bottom: 40px; }
 
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    .reviews-track-wrap {
+      overflow: hidden;
+      position: relative;
+      cursor: grab;
+    }
+    .reviews-track-wrap:active { cursor: grabbing; }
+
+    .reviews-track {
+      display: flex; gap: 20px;
+      width: max-content;
+      padding: 8px 6% 8px;
+      animation: reviewsScroll 40s linear infinite;
+    }
+    .reviews-track-wrap:hover .reviews-track { animation-play-state: paused; }
+
+    @keyframes reviewsScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .review-card {
+      width: 360px; flex-shrink: 0;
       border: 1px solid var(--border); border-radius: var(--radius);
       padding: 28px; transition: box-shadow .2s;
+      background: var(--white);
     }
     .review-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.06); }
 
@@ -615,7 +634,7 @@
       .features-grid { grid-template-columns: 1fr; }
       .feature-item { border-right: none; border-top: 1px solid rgba(255,255,255,0.08); }
       .feature-item:first-child { border-top: none; }
-      .reviews-grid { grid-template-columns: 1fr; }
+      .review-card { width: 280px; }
       .footer-top { grid-template-columns: 1fr; }
       .trust-item { padding: 10px 16px; }
     }
@@ -1183,39 +1202,133 @@
       </div>
     </div>
 
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text"><span data-i18n="rev1">"Easiest car rental I've ever done. Messaged on WhatsApp, car was at our hotel the next morning. Clean, well-maintained, exactly as described."</span></p>
-        <div class="review-author">
-          <div class="review-avatar">S</div>
-          <div>
-            <div class="review-name">Sarah M.</div>
-            <div class="review-loc">🇬🇧 London, UK</div>
-          </div>
+    <div class="reviews-track-wrap" id="reviewsWrap">
+      <div class="reviews-track" id="reviewsTrack">
+
+        <!-- SET 1 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Easiest car rental I've ever done. Messaged on WhatsApp, car was at our hotel the next morning. Clean, well-maintained, exactly as described."</p>
+          <div class="review-author"><div class="review-avatar">S</div><div><div class="review-name">Sarah M.</div><div class="review-loc">🇬🇧 London, UK</div></div></div>
         </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text"><span data-i18n="rev2">"Used MK Carrent for 3 weeks while working remotely in Phuket. Great price for long-term, super responsive, and when I had a small issue they helped immediately."</span></p>
-        <div class="review-author">
-          <div class="review-avatar">A</div>
-          <div>
-            <div class="review-name">Alex T.</div>
-            <div class="review-loc">🇩🇪 Berlin, Germany</div>
-          </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Used MK Carrent for 3 weeks while working remotely in Phuket. Great price for long-term, super responsive, and when I had a small issue they helped immediately."</p>
+          <div class="review-author"><div class="review-avatar">A</div><div><div class="review-name">Alex T.</div><div class="review-loc">🇩🇪 Berlin, Germany</div></div></div>
         </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text"><span data-i18n="rev3">"Second time using MK Carrent. The car was delivered on time, clean and full of petrol. Simple process, fair price. Will definitely use again next trip."</span></p>
-        <div class="review-author">
-          <div class="review-avatar">M</div>
-          <div>
-            <div class="review-name">Maria K.</div>
-            <div class="review-loc">🇷🇺 Moscow, Russia</div>
-          </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Second time using MK Carrent. Car delivered on time, clean and full of petrol. Simple process, fair price. Will definitely use again next trip."</p>
+          <div class="review-author"><div class="review-avatar">M</div><div><div class="review-name">Maria K.</div><div class="review-loc">🇷🇺 Moscow, Russia</div></div></div>
         </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Booked via WhatsApp, got a reply in minutes. Car was spotless and delivered right to our villa. No hidden charges at all. Highly recommend."</p>
+          <div class="review-author"><div class="review-avatar">J</div><div><div class="review-name">James R.</div><div class="review-loc">🇦🇺 Sydney, Australia</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Really smooth experience. We needed a bigger car last minute and they sorted it out in an hour. Great service, will use again for sure."</p>
+          <div class="review-author"><div class="review-avatar">N</div><div><div class="review-name">Nina V.</div><div class="review-loc">🇫🇷 Paris, France</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Rented for 10 days, everything was perfect. The car was new, clean, full tank. Price was better than any other rental agency on the island."</p>
+          <div class="review-author"><div class="review-avatar">D</div><div><div class="review-name">David L.</div><div class="review-loc">🇺🇸 New York, USA</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Fast delivery, friendly staff, no stress. Exactly what you need on holiday. The Toyota Yaris was perfect for Phuket roads."</p>
+          <div class="review-author"><div class="review-avatar">L</div><div><div class="review-name">Lena S.</div><div class="review-loc">🇸🇪 Stockholm, Sweden</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Used them twice in one month. Both times the car arrived early and in perfect condition. Their WhatsApp response is incredibly fast."</p>
+          <div class="review-author"><div class="review-avatar">K</div><div><div class="review-name">Kirill P.</div><div class="review-loc">🇷🇺 St. Petersburg, Russia</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Transparent pricing, no surprises. The car was clean and insured. We drove all around the island for a week without any issues."</p>
+          <div class="review-author"><div class="review-avatar">T</div><div><div class="review-name">Thomas W.</div><div class="review-loc">🇨🇭 Zurich, Switzerland</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"First time renting a car abroad — they made it so easy. Delivered to the airport, explained everything in 2 minutes. Zero stress."</p>
+          <div class="review-author"><div class="review-avatar">Y</div><div><div class="review-name">Yuki H.</div><div class="review-loc">🇯🇵 Tokyo, Japan</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Great value for money. Car was in excellent condition, insurance included, full tank. Returned it without any issues. 10/10."</p>
+          <div class="review-author"><div class="review-avatar">O</div><div><div class="review-name">Olga M.</div><div class="review-loc">🇺🇦 Kyiv, Ukraine</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Contacted them late at night, got a response within minutes. Car was at our hotel by 9am. Professional, reliable and fair price."</p>
+          <div class="review-author"><div class="review-avatar">C</div><div><div class="review-name">Chris B.</div><div class="review-loc">🇨🇦 Toronto, Canada</div></div></div>
+        </div>
+
+        <!-- SET 2 (duplicate for seamless loop) -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Easiest car rental I've ever done. Messaged on WhatsApp, car was at our hotel the next morning. Clean, well-maintained, exactly as described."</p>
+          <div class="review-author"><div class="review-avatar">S</div><div><div class="review-name">Sarah M.</div><div class="review-loc">🇬🇧 London, UK</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Used MK Carrent for 3 weeks while working remotely in Phuket. Great price for long-term, super responsive, and when I had a small issue they helped immediately."</p>
+          <div class="review-author"><div class="review-avatar">A</div><div><div class="review-name">Alex T.</div><div class="review-loc">🇩🇪 Berlin, Germany</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Second time using MK Carrent. Car delivered on time, clean and full of petrol. Simple process, fair price. Will definitely use again next trip."</p>
+          <div class="review-author"><div class="review-avatar">M</div><div><div class="review-name">Maria K.</div><div class="review-loc">🇷🇺 Moscow, Russia</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Booked via WhatsApp, got a reply in minutes. Car was spotless and delivered right to our villa. No hidden charges at all. Highly recommend."</p>
+          <div class="review-author"><div class="review-avatar">J</div><div><div class="review-name">James R.</div><div class="review-loc">🇦🇺 Sydney, Australia</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Really smooth experience. We needed a bigger car last minute and they sorted it out in an hour. Great service, will use again for sure."</p>
+          <div class="review-author"><div class="review-avatar">N</div><div><div class="review-name">Nina V.</div><div class="review-loc">🇫🇷 Paris, France</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Rented for 10 days, everything was perfect. The car was new, clean, full tank. Price was better than any other rental agency on the island."</p>
+          <div class="review-author"><div class="review-avatar">D</div><div><div class="review-name">David L.</div><div class="review-loc">🇺🇸 New York, USA</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Fast delivery, friendly staff, no stress. Exactly what you need on holiday. The Toyota Yaris was perfect for Phuket roads."</p>
+          <div class="review-author"><div class="review-avatar">L</div><div><div class="review-name">Lena S.</div><div class="review-loc">🇸🇪 Stockholm, Sweden</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Used them twice in one month. Both times the car arrived early and in perfect condition. Their WhatsApp response is incredibly fast."</p>
+          <div class="review-author"><div class="review-avatar">K</div><div><div class="review-name">Kirill P.</div><div class="review-loc">🇷🇺 St. Petersburg, Russia</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Transparent pricing, no surprises. The car was clean and insured. We drove all around the island for a week without any issues."</p>
+          <div class="review-author"><div class="review-avatar">T</div><div><div class="review-name">Thomas W.</div><div class="review-loc">🇨🇭 Zurich, Switzerland</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"First time renting a car abroad — they made it so easy. Delivered to the airport, explained everything in 2 minutes. Zero stress."</p>
+          <div class="review-author"><div class="review-avatar">Y</div><div><div class="review-name">Yuki H.</div><div class="review-loc">🇯🇵 Tokyo, Japan</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Great value for money. Car was in excellent condition, insurance included, full tank. Returned it without any issues. 10/10."</p>
+          <div class="review-author"><div class="review-avatar">O</div><div><div class="review-name">Olga M.</div><div class="review-loc">🇺🇦 Kyiv, Ukraine</div></div></div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Contacted them late at night, got a response within minutes. Car was at our hotel by 9am. Professional, reliable and fair price."</p>
+          <div class="review-author"><div class="review-avatar">C</div><div><div class="review-name">Chris B.</div><div class="review-loc">🇨🇦 Toronto, Canada</div></div></div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1290,6 +1403,28 @@
   </a>
 
   <script>
+    // Reviews drag-to-scroll
+    (function(){
+      const wrap = document.getElementById('reviewsWrap');
+      const track = document.getElementById('reviewsTrack');
+      if (!wrap || !track) return;
+      let isDragging = false, startX = 0, scrollLeft = 0;
+      wrap.addEventListener('mousedown', e => {
+        isDragging = true; startX = e.pageX - wrap.offsetLeft;
+        scrollLeft = wrap.scrollLeft; wrap.style.cursor = 'grabbing';
+      });
+      wrap.addEventListener('mouseleave', () => { isDragging = false; wrap.style.cursor = 'grab'; });
+      wrap.addEventListener('mouseup', () => { isDragging = false; wrap.style.cursor = 'grab'; });
+      wrap.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - wrap.offsetLeft;
+        wrap.scrollLeft = scrollLeft - (x - startX);
+      });
+      wrap.addEventListener('touchstart', e => { startX = e.touches[0].pageX; scrollLeft = wrap.scrollLeft; }, { passive: true });
+      wrap.addEventListener('touchmove', e => { wrap.scrollLeft = scrollLeft - (e.touches[0].pageX - startX); }, { passive: true });
+    })();
+
     // Booking tabs
     document.querySelectorAll('.booking-tab').forEach(tab => {
       tab.addEventListener('click', () => {
