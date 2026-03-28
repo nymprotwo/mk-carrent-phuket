@@ -82,11 +82,30 @@
       top: 50%; left: 30%; transform: translate(-50%, -50%);
       pointer-events: none;
     }
-    .hero::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 120px; pointer-events: none;
-      background: linear-gradient(180deg, transparent 0%, #F3F4F6 100%);
+    /* hero::after removed – using section dividers instead */
+    /* ── Section transition dividers ───────────────────────────── */
+    .sec-d2l {   /* dark → light */
+      height: 52px;
+      background: linear-gradient(to bottom, #111827 0%, #F3F4F6 100%);
+      display: block;
     }
+    .sec-l2d {   /* light → dark */
+      height: 52px;
+      background: linear-gradient(to bottom, #F3F4F6 0%, #111827 100%);
+      display: block;
+    }
+    /* promo bottom is slightly different shade */
+    .sec-promo-d2l {
+      height: 52px;
+      background: linear-gradient(to bottom, #0F172A 0%, #F3F4F6 100%);
+      display: block;
+    }
+    .sec-faq-l2d {
+      height: 52px;
+      background: linear-gradient(to bottom, #f7f8fa 0%, #0F172A 100%);
+      display: block;
+    }
+
 
     .hero-left { position: relative; z-index: 2; padding-right: 48px; padding-bottom: 80px; }
 
@@ -763,6 +782,7 @@
       </div>
     </div>
   </section>
+  <span class="sec-d2l"></span>
 
   <!-- TRUST STRIP -->
   <div class="trust-strip">
@@ -802,6 +822,7 @@
       <div class="trust-desc" data-i18n="trust5.desc">Ready to drive from the first minute</div>
     </div>
   </div>
+  <span class="sec-l2d"></span>
 
   <!-- HOW IT WORKS -->
   <section class="hiw-section">
@@ -831,6 +852,7 @@
       </div>
     </div>
   </section>
+  <span class="sec-d2l"></span>
 
   <!-- FLEET CARDS -->
   <section class="fleet-section" id="fleet">
@@ -1161,6 +1183,7 @@
       </button>
     </div>
   </div>
+  <span class="sec-l2d"></span>
 
 
   <!-- PROMO / BOOKING CTA -->
@@ -1193,6 +1216,7 @@
       </div>
     </div>
   </section>
+  <span class="sec-promo-d2l"></span>
 
   <!-- REVIEWS -->
   <section class="reviews-section" id="reviews">
@@ -1378,6 +1402,7 @@
       </details>
     </div>
   </section>
+  <span class="sec-faq-l2d"></span>
 
   <!-- FOOTER -->
   <footer>
