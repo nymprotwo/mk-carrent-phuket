@@ -211,6 +211,54 @@
     .trust-title { font-size: 14px; font-weight: 700; color: var(--text); }
     .trust-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
+    /* ═══ HOW IT WORKS ════════════════════════════ */
+    .hiw-section {
+      padding: 80px 6%;
+      background: var(--off);
+      border-bottom: 1px solid var(--border);
+    }
+    .hiw-head {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .hiw-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+    }
+    .hiw-title {
+      font-size: clamp(24px, 3vw, 36px); font-weight: 800;
+      color: var(--text); letter-spacing: -1px;
+    }
+    .hiw-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .hiw-step {
+      display: flex; flex-direction: column; gap: 12px;
+      padding: 28px 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .hiw-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--dark); color: var(--white);
+      font-size: 15px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hiw-step-title { font-size: 14px; font-weight: 700; color: var(--text); }
+    .hiw-step-desc  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    @media(max-width:768px) {
+      .hiw-steps { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:480px) {
+      .hiw-steps { grid-template-columns: 1fr; }
+    }
+
     /* ═══ SECTION BASE ═══════════════════════════ */
     .section-label {
       font-size: 12px; font-weight: 700; letter-spacing: 2px;
@@ -690,6 +738,36 @@
       <div class="trust-desc" data-i18n="trust5.desc">Ready to drive from the first minute</div>
     </div>
   </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="hiw-section">
+    <div class="hiw-head">
+      <div class="hiw-label">Simple process</div>
+      <h2 class="hiw-title" data-i18n="hiw.title">How it works</h2>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <div class="hiw-num">1</div>
+        <div class="hiw-step-title" data-i18n="hiw.s1.title">Choose your car</div>
+        <div class="hiw-step-desc" data-i18n="hiw.s1.desc">Browse available cars and pick the one you like</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-num">2</div>
+        <div class="hiw-step-title" data-i18n="hiw.s2.title">Contact us on WhatsApp</div>
+        <div class="hiw-step-desc" data-i18n="hiw.s2.desc">Send a message, we reply fast</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-num">3</div>
+        <div class="hiw-step-title" data-i18n="hiw.s3.title">We deliver the car</div>
+        <div class="hiw-step-desc" data-i18n="hiw.s3.desc">We bring it to your hotel, villa or airport</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-num">4</div>
+        <div class="hiw-step-title" data-i18n="hiw.s4.title">Drive and enjoy</div>
+        <div class="hiw-step-desc" data-i18n="hiw.s4.desc">Simple, fast and no stress</div>
+      </div>
+    </div>
+  </section>
 
   <!-- FLEET CARDS -->
   <section class="fleet-section" id="fleet">
@@ -1259,6 +1337,11 @@
         'trust4.desc':'What you see is what you pay',
         'trust5.title':'Full tank on pickup',
         'trust5.desc':'Ready to drive from the first minute',
+        'hiw.title':'How it works',
+        'hiw.s1.title':'Choose your car','hiw.s1.desc':'Browse available cars and pick the one you like',
+        'hiw.s2.title':'Contact us on WhatsApp','hiw.s2.desc':'Send a message, we reply fast',
+        'hiw.s3.title':'We deliver the car','hiw.s3.desc':'We bring it to your hotel, villa or airport',
+        'hiw.s4.title':'Drive and enjoy','hiw.s4.desc':'Simple, fast and no stress',
         'cat.label':'BROWSE BY TYPE','cat.title':'Car Category',
         'fleet.label':'Our fleet','fleet.title':'Available vehicles',
         'fleet.viewall':'View all →',
