@@ -455,13 +455,13 @@
 
     .btn-outline-w {
       display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.12); color: #ffffff;
       font-size: 14px; font-weight: 600;
       padding: 13px 24px; border-radius: 50px;
-      border: 1.5px solid rgba(255,255,255,0.12);
-      transition: border-color .2s, color .2s;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      transition: background .2s, transform .15s;
     }
-    .btn-outline-w:hover { border-color: rgba(255,255,255,0.35); color: white; }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
     .promo-car-wrap {
       position: relative;
