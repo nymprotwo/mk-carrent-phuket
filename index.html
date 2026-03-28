@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Carrent Phuket — Premium Car Rental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off: #f7f8fa;
+      --light: #f0f2f5;
+      --dark: #0e0e10;
+      --dark2: #181820;
+      --text: #0e0e10;
+      --muted: #717680;
+      --blue: #1a56db;
+      --blue-h: #1648c0;
+      --border: #e4e6ea;
+      --radius: 14px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ═══ NAV ════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px;
+      padding: 0 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo-icon {
+      width: 46px; height: 46px; background: var(--dark); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .nav-logo-text { line-height: 1.2; }
+    .nav-logo-name { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+    .nav-logo-sub { font-size: 12px; color: var(--muted); }
+
+    nav ul { display: flex; gap: 32px; }
+    nav ul a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .2s; }
+    nav ul a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--dark); color: var(--white);
+      font-size: 14px; font-weight: 600;
+      padding: 10px 22px; border-radius: 50px;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: #2a2a35; transform: translateY(-1px); }
+
+    /* ═══ HERO ═══════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 100px 6% 0;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,86,219,0.18) 0%, transparent 70%);
+      top: 50%; left: 30%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-left { position: relative; z-index: 2; padding-right: 48px; padding-bottom: 80px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 500;
+      padding: 7px 14px; border-radius: 50px; margin-bottom: 28px;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
+
+    .hero h1 {
+      font-size: clamp(38px, 4.5vw, 58px); font-weight: 800;
+      color: var(--white); line-height: 1.1; letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: rgba(255,255,255,0.35); }
+
+    .hero-sub {
+      font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.7;
+      max-width: 400px; margin-bottom: 40px;
+    }
+
+    /* Booking card */
+    .booking-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+      max-width: 520px;
+    }
+
+    .booking-tabs {
+      display: flex; gap: 6px; margin-bottom: 20px;
+    }
+    .booking-tab {
+      padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .2s; border: none; background: transparent;
+      color: var(--muted);
+    }
+    .booking-tab.active { background: var(--dark); color: var(--white); }
+    .booking-tab:not(.active):hover { background: var(--light); color: var(--text); }
+
+    .booking-fields {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;
+    }
+    .booking-field {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .booking-field label {
+      font-size: 11px; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .booking-field input, .booking-field select {
+      width: 100%; height: 44px;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      padding: 0 14px; font-size: 14px; font-weight: 500;
+      font-family: 'Inter', sans-serif; color: var(--text);
+      background: var(--off); outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+    }
+    .booking-field input:focus, .booking-field select:focus { border-color: var(--blue); background: var(--white); }
+    .booking-field.full { grid-column: 1 / -1; }
+
+    .booking-submit {
+      width: 100%; height: 50px;
+      background: var(--blue); color: var(--white);
+      font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
+      border: none; border-radius: var(--radius-sm); cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .booking-submit:hover { background: var(--blue-h); transform: translateY(-1px); }
+
+    /* Hero right car */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: flex-end;
+      height: 100%; overflow: hidden;
+    }
+    .hero-car-wrap {
+      position: relative; width: 110%; margin-right: -6%;
+    }
+    .hero-car-img {
+      width: 100%; display: block;
+      -webkit-mask-image:
+        linear-gradient(to right,  transparent 0%, black 22%, black 82%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%);
+      -webkit-mask-composite: destination-in;
+      mask-image:
+        linear-gradient(to right,  transparent 0%, black 22%, black 82%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%);
+      mask-composite: intersect;
+      filter: brightness(0.9) contrast(1.05);
+    }
+    .hero-car-glow {
+      position: absolute; bottom: -60px; left: 20%; right: 20%; height: 120px;
+      background: radial-gradient(ellipse, rgba(26,86,219,0.25) 0%, transparent 70%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    /* ═══ TRUST STRIP ════════════════════════════ */
+    .trust-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 6%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+    }
+    .trust-item {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 0 28px;
+      border-right: 1px solid var(--border);
+    }
+    .trust-item:first-child { padding-left: 0; }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon-wrap {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--light);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .trust-item svg { flex-shrink: 0; }
+    .trust-title { font-size: 14px; font-weight: 700; color: var(--text); }
+    .trust-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ═══ SECTION BASE ═══════════════════════════ */
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3vw, 40px); font-weight: 800;
+      letter-spacing: -1.2px; line-height: 1.1;
+    }
+    .section-head {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .view-all {
+      font-size: 14px; font-weight: 600; color: var(--blue);
+      display: flex; align-items: center; gap: 4px;
+      transition: gap .2s;
+    }
+    .view-all:hover { gap: 8px; }
+
+    /* ═══ CATEGORIES ═════════════════════════════ */
+    .categories-section { padding: 80px 6%; background: var(--white); }
+
+    .categories-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+
+    .cat-card {
+      background: var(--light); border-radius: var(--radius);
+      overflow: hidden; position: relative; cursor: pointer;
+      height: 220px; transition: transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 20px;
+    }
+    .cat-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+
+    .cat-name { font-size: 18px; font-weight: 700; z-index: 1; position: relative; }
+    .cat-count { font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 2px; z-index: 1; position: relative; }
+
+    .cat-car-img {
+      position: absolute; bottom: 0; right: -10px;
+      width: 75%; object-fit: contain;
+      transition: transform .3s;
+    }
+    .cat-card:hover .cat-car-img { transform: translateX(-5px) scale(1.03); }
+
+    .cat-arrow {
+      position: absolute; bottom: 16px; left: 20px; z-index: 2;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--white); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; transition: background .2s, transform .2s;
+    }
+    .cat-card:hover .cat-arrow { background: var(--dark); color: white; transform: rotate(-30deg); }
+
+    /* ═══ FLEET ══════════════════════════════════ */
+    .fleet-section { padding: 80px 6%; background: var(--off); }
+
+    .fleet-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    }
+
+    .fleet-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: grid; grid-template-columns: 200px 1fr;
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .fleet-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+    .fleet-car-img-wrap {
+      background: var(--light);
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px; overflow: hidden; position: relative;
+    }
+    .fleet-car-img {
+      width: 100%; height: 120px; object-fit: contain;
+      transition: transform .3s;
+    }
+    .fleet-card:hover .fleet-car-img { transform: scale(1.06); }
+
+    .fleet-car-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      width: 100%; height: 130px;
+      border: 1.5px dashed #d1d5db; border-radius: 10px;
+      background: #f9fafb;
+    }
+
+    .fleet-body { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+
+    .fleet-tag {
+      display: inline-block;
+      background: var(--light); color: var(--muted);
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 3px 10px; border-radius: 50px; margin-bottom: 8px;
+    }
+    .fleet-name { font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
+
+    .fleet-specs {
+      display: flex; gap: 14px; margin-bottom: 16px;
+    }
+    .fleet-spec {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; color: var(--muted); font-weight: 500;
+    }
+
+    .fleet-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .fleet-price { }
+    .fleet-price-val { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    .fleet-price-day { font-size: 12px; color: var(--muted); }
+    .fleet-book {
+      background: var(--dark); color: var(--white);
+      font-size: 13px; font-weight: 600; font-family: 'Inter', sans-serif;
+      padding: 9px 20px; border-radius: 50px; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .fleet-book:hover { background: #2a2a35; transform: translateY(-1px); }
+
+    /* ═══ FEATURES ═══════════════════════════════ */
+    .features-section {
+      background: var(--dark);
+      padding: 60px 6%;
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .feature-item {
+      padding: 36px 32px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .feature-title { font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .feature-text { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+    /* ═══ PROMO ══════════════════════════════════ */
+    .promo-section {
+      background: var(--dark2);
+      padding: 80px 6%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .promo-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(26,86,219,0.15); border: 1px solid rgba(26,86,219,0.3);
+      color: #60a5fa; font-size: 12px; font-weight: 600;
+      padding: 6px 14px; border-radius: 50px; margin-bottom: 20px;
+    }
+
+    .promo-title {
+      font-size: clamp(28px, 3vw, 42px); font-weight: 800;
+      color: var(--white); letter-spacing: -1.5px; line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .promo-sub { font-size: 15px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 32px; }
+
+    .promo-actions { display: flex; align-items: center; gap: 16px; }
+
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25d366; color: white;
+      font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
+      padding: 14px 28px; border-radius: 50px; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-wa:hover { background: #1fba59; transform: translateY(-2px); }
+
+    .btn-outline-w {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: rgba(255,255,255,0.6);
+      font-size: 14px; font-weight: 600;
+      padding: 13px 24px; border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      transition: border-color .2s, color .2s;
+    }
+    .btn-outline-w:hover { border-color: rgba(255,255,255,0.35); color: white; }
+
+    .promo-car-wrap {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .promo-car-img {
+      width: 100%; object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    }
+    .promo-offer-badge {
+      position: absolute; top: -10px; right: 10%;
+      background: var(--blue); color: white;
+      width: 90px; height: 90px; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-weight: 800; box-shadow: 0 8px 24px rgba(26,86,219,0.4);
+    }
+    .promo-offer-pct { font-size: 26px; letter-spacing: -1px; line-height: 1; }
+    .promo-offer-txt { font-size: 10px; opacity: 0.8; letter-spacing: 0.5px; }
+
+    /* ═══ REVIEWS ════════════════════════════════ */
+    .reviews-section { padding: 80px 6%; background: var(--white); }
+
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+
+    .review-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; transition: box-shadow .2s;
+    }
+    .review-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.06); }
+
+    .review-stars { color: #f59e0b; font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+    .review-text { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 20px; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .review-avatar {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue), #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: white; font-size: 15px;
+    }
+    .review-name { font-size: 14px; font-weight: 700; }
+    .review-loc { font-size: 12px; color: var(--muted); }
+
+    /* ═══ FOOTER ═════════════════════════════════ */
+    footer {
+      background: var(--dark); color: var(--white);
+      padding: 64px 6% 32px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo-icon {
+      width: 36px; height: 36px; background: var(--white); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+    }
+    .footer-logo-name { font-size: 16px; font-weight: 700; }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 24px; }
+    .footer-social {
+      display: flex; gap: 10px;
+    }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; transition: background .2s;
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.15); }
+
+    .footer-col-title { font-size: 13px; font-weight: 700; margin-bottom: 20px; color: var(--white); letter-spacing: 0.3px; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.4); transition: color .2s; }
+    .footer-col ul a:hover { color: var(--white); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; color: rgba(255,255,255,0.3);
+    }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { color: rgba(255,255,255,0.3); transition: color .2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ═══ FLOATING WA ════════════════════════════ */
+    .float-wa {
+      position: fixed; bottom: 28px; right: 28px; z-index: 99;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      transition: transform .2s, box-shadow .2s;
+      animation: popIn .4s cubic-bezier(0.34, 1.56, 0.64, 1) .5s both;
+    }
+    .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.6); }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+
+    /* ═══ RESPONSIVE ═════════════════════════════ */
+    @media (max-width: 1024px) {
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .fleet-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-item:nth-child(2) { border-right: none; }
+      .feature-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.08); }
+      .feature-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
+      .promo-section { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 90px; }
+      .hero-right { display: none; }
+      .hero-left { padding-right: 0; }
+      .booking-fields { grid-template-columns: 1fr; }
+      .booking-field.full { grid-column: 1; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .fleet-card { grid-template-columns: 1fr; }
+      .fleet-car-img-wrap { height: 160px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-item { border-right: none; border-top: 1px solid rgba(255,255,255,0.08); }
+      .feature-item:first-child { border-top: none; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .trust-item { padding: 10px 16px; }
+    }
+
+    /* ═══ LANG SWITCHER ═══════════════════════════════ */
+    .lang-switcher {
+      display: flex; gap: 2px;
+      background: var(--light); border-radius: 8px; padding: 3px;
+      margin-left: 14px;
+    }
+    .lang-btn {
+      padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 700;
+      border: none; background: transparent; color: var(--muted);
+      cursor: pointer; transition: all .18s; font-family: 'Inter', sans-serif;
+      letter-spacing: 0.6px; text-transform: uppercase;
+    }
+    .lang-btn.active {
+      background: var(--white); color: var(--text);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.13);
+    }
+    .lang-btn:hover:not(.active) { color: var(--text); }
+    @media(max-width:768px){ .lang-switcher { margin-left: 0; } }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 11l1.5-4.5A2 2 0 016.4 5h11.2a2 2 0 011.9 1.5L21 11" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="2" y="11" width="20" height="7" rx="2" fill="white" fill-opacity="0.15" stroke="white" stroke-width="1.5"/>
+          <circle cx="7" cy="18" r="2" fill="white"/>
+          <circle cx="17" cy="18" r="2" fill="white"/>
+          <path d="M9 8.5h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M2 14h20" stroke="white" stroke-width="1" stroke-opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        <div class="nav-logo-name">MK Carrent</div>
+        <div class="nav-logo-sub">Phuket, Thailand</div>
+      </div>
+    </div>
+    <ul>
+      <li><a href="#fleet" data-i18n="nav.cars">Cars</a></li>
+      <li><a href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
+      <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="#contact" data-i18n="nav.about">About</a></li>
+    </ul>
+    <a href="#booking" class="nav-cta" data-i18n="nav.cta">Check Availability</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="th" onclick="setLang('th')">TH</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+  </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="booking">
+    <div class="hero-glow"></div>
+
+    <div class="hero-left">
+      <h1 data-i18n-html="hero.h1">Premium car<br>rental <span>in</span><br>Phuket</h1>
+      <p class="hero-sub" data-i18n="hero.sub">We want you to have a stress-free experience — clean cars, transparent pricing, and delivery right to your hotel.</p>
+
+      <div class="booking-card">
+        <div class="booking-tabs">
+          <button class="booking-tab active" data-i18n="tab.daily">Daily</button>
+          <button class="booking-tab" data-i18n="tab.weekly">Weekly</button>
+          <button class="booking-tab" data-i18n="tab.monthly">Monthly</button>
+        </div>
+        <div class="booking-fields">
+          <div class="booking-field">
+            <label data-i18n="label.pickup_loc">Pick-up Location</label>
+            <select id="loc-from">
+              <option value="">Select location...</option>
+              <option>Phuket Airport (HKT)</option>
+              <option>Patong Beach</option>
+              <option>Kata / Karon</option>
+              <option>Rawai / Nai Harn</option>
+              <option>Kamala</option>
+              <option>Phuket Town</option>
+              <option>My hotel (specify)</option>
+            </select>
+          </div>
+          <div class="booking-field">
+            <label data-i18n="label.cartype">Car Type</label>
+            <select id="car-type">
+              <option value="">Any car</option>
+              <option>Economy — Toyota Yaris</option>
+              <option>Economy — Toyota Vios</option>
+              <option>Economy — Toyota Ativ</option>
+              <option>Compact — Suzuki Swift</option>
+              <option>Compact — Honda City</option>
+              <option>Compact — MG5</option>
+              <option>MPV — Mitsubishi Xpander</option>
+              <option>MPV — Toyota Veloz</option>
+            </select>
+          </div>
+          <div class="booking-field">
+            <label data-i18n="label.pickup_date">Pick-up Date</label>
+            <input type="text" id="date-from" placeholder="DD / MM / YYYY"
+              onfocus="this.type='date'" onblur="if(!this.value){this.type='text';this.placeholder='DD / MM / YYYY'}" />
+          </div>
+          <div class="booking-field">
+            <label data-i18n="label.return_date">Return Date</label>
+            <input type="text" id="date-to" placeholder="DD / MM / YYYY"
+              onfocus="this.type='date'" onblur="if(!this.value){this.type='text';this.placeholder='DD / MM / YYYY'}" />
+          </div>
+        </div>
+        <button class="booking-submit" data-i18n="btn.search" onclick="searchCar()">Search Available Cars →</button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-car-wrap">
+        <div class="hero-car-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item">
+      <div class="trust-icon-wrap">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <div class="trust-title" data-i18n="trust1.title">Free hotel delivery</div>
+      <div class="trust-desc" data-i18n="trust1.desc">We bring the car to your hotel, villa, or airport — anywhere on the island.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon-wrap">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="trust-title" data-i18n="trust2.title">Insurance included</div>
+      <div class="trust-desc" data-i18n="trust2.desc">Full third-party insurance on every rental. No surprises, no hidden coverage gaps.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon-wrap">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="trust-title" data-i18n="trust3.title">24/7 support</div>
+      <div class="trust-desc" data-i18n="trust3.desc">Real person available around the clock. Flat tyre at midnight? We've got you.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon-wrap">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22V12m0 0V2m0 10H2m10 0h10"/></svg>
+      </div>
+      <div class="trust-title" data-i18n="trust4.title">No hidden fees</div>
+      <div class="trust-desc" data-i18n="trust4.desc">The price we quote is the price you pay. Zero extra charges at pickup or return.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon-wrap">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+      </div>
+      <div class="trust-title" data-i18n="trust5.title">Full tank on pickup</div>
+      <div class="trust-desc" data-i18n="trust5.desc">Every car is delivered with a full tank. Return it full — or we settle the difference.</div>
+    </div>
+  </div>
+
+  <!-- FLEET CARDS -->
+  <section class="fleet-section" id="fleet">
+    <div class="section-head">
+      <div>
+        <div class="section-label" data-i18n="fleet.label">Our fleet</div>
+        <h2 class="section-title" data-i18n="fleet.title">Available vehicles</h2>
+      </div>
+      <a href="https://wa.me/66826488253?text=Hi! Show me all available cars" class="view-all" data-i18n="fleet.viewall">View all →</a>
+    </div>
+
+    <div class="fleet-grid">
+
+      <!-- Toyota Yaris -->
+      <div class="fleet-card">
+        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
+          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
+        </div></div>
+        <div class="fleet-body">
+          <div>
+            <span class="fleet-tag">Economy</span>
+            <div class="fleet-name">Toyota Yaris</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                5 seats
+              </span>
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                2 bags
+              </span>
+              <span class="fleet-spec">⚙ Auto</span>
+              <span class="fleet-spec">❄ A/C</span>
+            </div>
+          </div>
+          <div class="fleet-footer">
+            <div class="fleet-price">
+              <div class="fleet-price-val">800 ฿</div>
+              <div class="fleet-price-day">per day</div>
+            </div>
+            <button class="fleet-book" onclick="bookCar('Toyota Yaris', 800)">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Toyota Vios -->
+      <div class="fleet-card">
+        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
+          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
+        </div></div>
+        <div class="fleet-body">
+          <div>
+            <span class="fleet-tag">Economy</span>
+            <div class="fleet-name">Toyota Vios</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                5 seats
+              </span>
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                2 bags
+              </span>
+              <span class="fleet-spec">⚙ Auto</span>
+              <span class="fleet-spec">❄ A/C</span>
+            </div>
+          </div>
+          <div class="fleet-footer">
+            <div class="fleet-price">
+              <div class="fleet-price-val">900 ฿</div>
+              <div class="fleet-price-day">per day</div>
+            </div>
+            <button class="fleet-book" onclick="bookCar('Toyota Vios', 900)">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Toyota Ativ -->
+      <div class="fleet-card">
+        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
+          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
+        </div></div>
+        <div class="fleet-body">
+          <div>
+            <span class="fleet-tag">Economy</span>
+            <div class="fleet-name">Toyota Ativ</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                5 seats
+              </span>
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                2 bags
+              </span>
+              <span class="fleet-spec">⚙ Auto</span>
+              <span class="fleet-spec">❄ A/C</span>
+            </div>
+          </div>
+          <div class="fleet-footer">
+            <div class="fleet-price">
+              <div class="fleet-price-val">1,000 ฿</div>
+              <div class="fleet-price-day">per day</div>
+            </div>
+            <button class="fleet-book" onclick="bookCar('Toyota Ativ', 1000)">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Suzuki Swift -->
+      <div class="fleet-card">
+        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
+          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
+        </div></div>
+        <div class="fleet-body">
+          <div>
+            <span class="fleet-tag">Compact</span>
+            <div class="fleet-name">Suzuki Swift</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                5 seats
+              </span>
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                2 bags
+              </span>
+              <span class="fleet-spec">⚙ Auto</span>
+              <span class="fleet-spec">❄ A/C</span>
+            </div>
+          </div>
+          <div class="fleet-footer">
+            <div class="fleet-price">
+              <div class="fleet-price-val">1,000 ฿</div>
+              <div class="fleet-price-day">per day</div>
+            </div>
+            <button class="fleet-book" onclick="bookCar('Suzuki Swift', 1000)">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Honda City -->
+      <div class="fleet-card">
+        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
+          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
+        </div></div>
+        <div class="fleet-body">
+          <div>
+            <span class="fleet-tag">Compact</span>
+            <div class="fleet-name">Honda City</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                5 seats
+              </span>
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                2 bags
+              </span>
+              <span class="fleet-spec">⚙ Auto</span>
+              <span class="fleet-spec">❄ A/C</span>
+            </div>
+          </div>
+          <div class="fleet-footer">
+            <div class="fleet-price">
+              <div class="fleet-price-val">1,000 ฿</div>
+              <div class="fleet-price-day">per day</div>
+            </div>
+            <button class="fleet-book" onclick="bookCar('Honda City', 1000)">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- MG5 -->
+      <div class="fleet-card">
+        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
+          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
+        </div></div>
+        <div class="fleet-body">
+          <div>
+            <span class="fleet-tag">Compact</span>
+            <div class="fleet-name">MG5</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                5 seats
+              </span>
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                3 bags
+              </span>
+              <span class="fleet-spec">⚙ Auto</span>
+              <span class="fleet-spec">❄ A/C</span>
+            </div>
+          </div>
+          <div class="fleet-footer">
+            <div class="fleet-price">
+              <div class="fleet-price-val">1,000 ฿</div>
+              <div class="fleet-price-day">per day</div>
+            </div>
+            <button class="fleet-book" onclick="bookCar('MG5', 1000)">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Mitsubishi Xpander -->
+      <div class="fleet-card">
+        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
+          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
+        </div></div>
+        <div class="fleet-body">
+          <div>
+            <span class="fleet-tag">MPV</span>
+            <div class="fleet-name">Mitsubishi Xpander</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                7 seats
+              </span>
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                4 bags
+              </span>
+              <span class="fleet-spec">⚙ Auto</span>
+              <span class="fleet-spec">❄ A/C</span>
+            </div>
+          </div>
+          <div class="fleet-footer">
+            <div class="fleet-price">
+              <div class="fleet-price-val">1,500 ฿</div>
+              <div class="fleet-price-day">per day</div>
+            </div>
+            <button class="fleet-book" onclick="bookCar('Mitsubishi Xpander', 1500)">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Toyota Veloz -->
+      <div class="fleet-card">
+        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
+          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
+        </div></div>
+        <div class="fleet-body">
+          <div>
+            <span class="fleet-tag" style="background:#e8f0fe;color:#1a56db;">Most popular</span>
+            <div class="fleet-name">Toyota Veloz</div>
+            <div class="fleet-specs">
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                7 seats
+              </span>
+              <span class="fleet-spec">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                4 bags
+              </span>
+              <span class="fleet-spec">⚙ Auto</span>
+              <span class="fleet-spec">❄ A/C</span>
+            </div>
+          </div>
+          <div class="fleet-footer">
+            <div class="fleet-price">
+              <div class="fleet-price-val">1,700 ฿</div>
+              <div class="fleet-price-day">per day</div>
+            </div>
+            <button class="fleet-book" onclick="bookCar('Toyota Veloz', 1700)">Book Now</button>
+          </div>
+        </div>
+      </div>
+      <!-- Need something else -->
+      <div class="fleet-card" style="background: var(--off); border-style: dashed; border-color: #ccc;">
+        <div class="fleet-car-img-wrap" style="background:transparent;display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:42px;">💬</div>
+        </div>
+        <div class="fleet-body" style="justify-content: center;">
+          <div class="fleet-name" style="margin-bottom: 8px;" data-i18n="fleet.more.title">Need something else?</div>
+          <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.5;" data-i18n="fleet.more.sub">Ask us — we find the right car for your trip.</p>
+          <button class="fleet-book" style="width: fit-content;" onclick="window.open('https://wa.me/66826488253?text=Hi! I need help choosing a car in Phuket.')" data-i18n="btn.chat">Chat with us</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PROMO / BOOKING CTA -->
+  <section class="promo-section" id="contact">
+    <div>
+      <div class="promo-badge" data-i18n="promo.badge">⚡ Instant response on WhatsApp</div>
+      <h2 class="promo-title" data-i18n-html="promo.title">Book your car<br>with free delivery<br>to your hotel</h2>
+      <p class="promo-sub">
+        Message us on WhatsApp — a real person replies in minutes.
+        Tell us your dates and location, we handle everything else.
+        Follow us on Facebook: <strong style="color: rgba(255,255,255,0.7);">@MK.CARRENT.CO.TH</strong>
+      </p>
+      <div class="promo-actions">
+        <button class="btn-wa" onclick="window.open('https://wa.me/66826488253?text=Hi MK! I want to rent a car in Phuket.')" data-i18n="btn.wa">💬 Book on WhatsApp</button>
+        <a href="tel:+66826488253" class="btn-outline-w" data-i18n="btn.call">📞 Call us</a>
+      </div>
+    </div>
+
+    <div class="promo-car-wrap">
+      <div style="width:100%;height:280px;background:rgba(255,255,255,0.05);border:1.5px dashed rgba(255,255,255,0.15);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px"><svg width="52" height="52" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg><span style="font-size:12px;color:rgba(255,255,255,0.25);font-weight:500">Add photo</span></div>
+      <div class="promo-offer-badge">
+        <span class="promo-offer-pct">9+</span>
+        <span class="promo-offer-txt">YEARS IN<br>PHUKET</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section" id="reviews">
+    <div class="section-head">
+      <div>
+        <div class="section-label" data-i18n="rev.label">What people say</div>
+        <h2 class="section-title" data-i18n="rev.title">Customer Reviews</h2>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--muted);">
+        <span style="color:#f59e0b; font-size:18px;">★</span>
+        <strong style="font-size:20px; color:var(--text);">4.9</strong>
+        <span data-i18n="rev.rating">/ 5.0 · 200+ reviews</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text"><span data-i18n="rev1">"Easiest car rental I've ever done. Messaged on WhatsApp, car was at our hotel the next morning. Clean, well-maintained, exactly as described."</span></p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div>
+            <div class="review-name">Sarah M.</div>
+            <div class="review-loc">🇬🇧 London, UK</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text"><span data-i18n="rev2">"Used MK Carrent for 3 weeks while working remotely in Phuket. Great price for long-term, super responsive, and when I had a small issue they helped immediately."</span></p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Alex T.</div>
+            <div class="review-loc">🇩🇪 Berlin, Germany</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text"><span data-i18n="rev3">"Second time using MK Carrent. The car was delivered on time, clean and full of petrol. Simple process, fair price. Will definitely use again next trip."</span></p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Maria K.</div>
+            <div class="review-loc">🇷🇺 Moscow, Russia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: 80px 6%; background: var(--off);" id="faq">
+    <div class="section-head" style="margin-bottom: 40px;">
+      <div>
+        <div class="section-label" data-i18n="faq.label">FAQ</div>
+        <h2 class="section-title" data-i18n="faq.title">Common questions</h2>
+      </div>
+    </div>
+    <div style="max-width: 720px; display: flex; flex-direction: column; gap: 12px;">
+      <details style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:20px 24px; cursor:pointer;">
+        <summary style="font-size:15px; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+          <span data-i18n="faq1.q">What documents do I need to rent a car?</span>
+          <span style="font-size:20px; color:var(--muted);">+</span>
+        </summary>
+        <p style="font-size:14px; color:var(--muted); margin-top:14px; line-height:1.7;"><span data-i18n="faq1.a">You need a valid driver's license and a passport. An international driving permit is recommended but often not strictly required for short trips. We'll confirm the requirements when you book.</span></p>
+      </details>
+      <details style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:20px 24px; cursor:pointer;">
+        <summary style="font-size:15px; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+          <span data-i18n="faq2.q">Do you deliver to the airport?</span>
+          <span style="font-size:20px; color:var(--muted);">+</span>
+        </summary>
+        <p style="font-size:14px; color:var(--muted); margin-top:14px; line-height:1.7;"><span data-i18n="faq2.a">Yes — we deliver to Phuket International Airport and any hotel or villa on the island. Just tell us your location and preferred time when booking.</span></p>
+      </details>
+      <details style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:20px 24px; cursor:pointer;">
+        <summary style="font-size:15px; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+          <span data-i18n="faq3.q">Is insurance included in the price?</span>
+          <span style="font-size:20px; color:var(--muted);">+</span>
+        </summary>
+        <p style="font-size:14px; color:var(--muted); margin-top:14px; line-height:1.7;"><span data-i18n="faq3.a">Yes. All rentals include full third-party insurance. The price we quote is the final price — no extra charges for insurance, delivery, or fuel (car is delivered full).</span></p>
+      </details>
+      <details style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:20px 24px; cursor:pointer;">
+        <summary style="font-size:15px; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+          <span data-i18n="faq4.q">Do you offer long-term discounts?</span>
+          <span style="font-size:20px; color:var(--muted);">+</span>
+        </summary>
+        <p style="font-size:14px; color:var(--muted); margin-top:14px; line-height:1.7;"><span data-i18n="faq4.a">Yes — for rentals of 7 days or more we offer reduced rates. Contact us on WhatsApp with your dates and we'll give you the best price available.</span></p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-icon">🚗</div>
+          <div class="footer-logo-name">MK Carrent Phuket</div>
+        </div>
+        <p class="footer-desc" data-i18n="footer.desc">Premium car rental in Phuket since 2015. Clean cars, transparent prices, delivered to your door.</p>
+        <div class="footer-social">
+          <a href="https://facebook.com/MK.CARRENT.CO.TH" title="Facebook">f</a>
+          <a href="https://wa.me/66826488253" title="WhatsApp">💬</a>
+          <a href="https://instagram.com" title="Instagram">ig</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer.delivery">Delivery Areas</div>
+        <ul>
+          <li><a href="#">Phuket Airport</a></li>
+          <li><a href="#">Patong Beach</a></li>
+          <li><a href="#">Kata / Karon</a></li>
+          <li><a href="#">Rawai / Nai Harn</a></li>
+          <li><a href="#">Kamala</a></li>
+          <li><a href="#">Phuket Town</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer.services">Services</div>
+        <ul>
+          <li><a href="#" data-i18n="svc.daily">Daily rental</a></li>
+          <li><a href="#" data-i18n="svc.weekly">Weekly rental</a></li>
+          <li><a href="#" data-i18n="svc.monthly">Monthly rental</a></li>
+          <li><a href="#" data-i18n="svc.airport">Airport pickup</a></li>
+          <li><a href="#" data-i18n="svc.hotel">Hotel delivery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer.contact">Contact</div>
+        <ul>
+          <li><a href="https://wa.me/66826488253">WhatsApp</a></li>
+          <li><a href="tel:+66826488253">+66 XX XXX XXXX</a></li>
+          <li><a href="mailto:info@mk-carrent-phuket.com">Email us</a></li>
+          <li><a href="https://facebook.com/MK.CARRENT.CO.TH">@MK.CARRENT.CO.TH</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="footer.copy">© 2024 MK Carrent Phuket. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/66826488253" class="float-wa" title="Chat on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script>
+    // Booking tabs
+    document.querySelectorAll('.booking-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.booking-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+
+    // Set min date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date-from').min = today;
+    document.getElementById('date-to').min = today;
+    document.getElementById('date-from').addEventListener('change', e => {
+      document.getElementById('date-to').min = e.target.value;
+    });
+
+    function searchCar() {
+      const loc = document.getElementById('loc-from').value || 'not specified';
+      const car = document.getElementById('car-type').value || 'any car';
+      const from = document.getElementById('date-from').value || 'not specified';
+      const to = document.getElementById('date-to').value || 'not specified';
+      const msg = `Hi MK! I'd like to rent a car in Phuket.\n\nPickup: ${loc}\nCar: ${car}\nFrom: ${from}\nTo: ${to}\n\nPlease confirm availability.`;
+      window.open('https://wa.me/66826488253?text=' + encodeURIComponent(msg));
+    }
+
+    function bookCar(name, price) {
+      const msg = `Hi MK! I'd like to rent a ${name} (${price} ฿/day). Please let me know availability.`;
+      window.open('https://wa.me/66826488253?text=' + encodeURIComponent(msg));
+    }
+
+    // ═══ LANGUAGE SWITCHER ═══════════════════════════════════
+    const translations = {
+      en: {
+        'nav.cars':'Cars','nav.reviews':'Reviews','nav.faq':'FAQ',
+        'nav.about':'About','nav.cta':'Check Availability',
+        'hero.h1':'Premium car<br>rental <span>in</span><br>Phuket',
+        'hero.sub':'We want you to have a stress-free experience — clean cars, transparent pricing, and delivery right to your hotel.',
+        'tab.daily':'Daily','tab.weekly':'Weekly','tab.monthly':'Monthly',
+        'label.pickup_loc':'Pick-up Location','label.cartype':'Car Type',
+        'label.pickup_date':'Pick-up Date','label.return_date':'Return Date',
+        'btn.search':'Search Available Cars →',
+        'trust1.title':'Free hotel delivery',
+        'trust1.desc':'We bring the car to your hotel, villa, or airport — anywhere on the island.',
+        'trust2.title':'Insurance included',
+        'trust2.desc':'Full third-party insurance on every rental. No surprises, no hidden coverage gaps.',
+        'trust3.title':'24/7 support',
+        'trust3.desc':"Real person available around the clock. Flat tyre at midnight? We've got you.",
+        'trust4.title':'No hidden fees',
+        'trust4.desc':'The price we quote is the price you pay. Zero extra charges at pickup or return.',
+        'trust5.title':'Full tank on pickup',
+        'trust5.desc':'Every car is delivered with a full tank. Return it full — or we settle the difference.',
+        'cat.label':'BROWSE BY TYPE','cat.title':'Car Category',
+        'fleet.label':'Our fleet','fleet.title':'Available vehicles',
+        'fleet.viewall':'View all →',
+        'tag.economy':'Economy','tag.compact':'Compact','tag.mpv':'MPV','tag.popular':'Most popular',
+        'fleet.seats':'seats','fleet.bags':'bags','fleet.perday':'per day',
+        'btn.booknow':'Book Now',
+        'fleet.more.title':'Need something else?',
+        'fleet.more.sub':'Ask us — we find the right car for your trip.',
+        'btn.chat':'Chat with us',
+        'promo.badge':'⚡ Instant response on WhatsApp',
+        'promo.title':'Book your car<br>with free delivery<br>to your hotel',
+        'btn.wa':'💬 Book on WhatsApp','btn.call':'📞 Call us',
+        'rev.label':'What people say','rev.title':'Customer Reviews',
+        'rev.rating':'/ 5.0 · 200+ reviews',
+        'rev1':'"Easiest car rental I\'ve ever done. Messaged on WhatsApp, car was at our hotel the next morning. Clean, well-maintained, exactly as described."',
+        'rev2':'"Used MK Carrent for 3 weeks while working remotely in Phuket. Great price for long-term, super responsive, and when I had a small issue they helped immediately."',
+        'rev3':'"Second time using MK Carrent. The car was delivered on time, clean and full of petrol. Simple process, fair price. Will definitely use again next trip."',
+        'faq.label':'FAQ','faq.title':'Common questions',
+        'faq1.q':'What documents do I need to rent a car?',
+        'faq1.a':"You need a valid driver's license and a passport. An international driving permit is recommended but often not strictly required for short trips. We'll confirm the requirements when you book.",
+        'faq2.q':'Do you deliver to the airport?',
+        'faq2.a':'Yes — we deliver to Phuket International Airport and any hotel or villa on the island. Just tell us your location and preferred time when booking.',
+        'faq3.q':'Is insurance included in the price?',
+        'faq3.a':'Yes. All rentals include full third-party insurance. The price we quote is the final price — no extra charges for insurance, delivery, or fuel (car is delivered full).',
+        'faq4.q':'Do you offer long-term discounts?',
+        'faq4.a':"Yes — for rentals of 7 days or more we offer reduced rates. Contact us on WhatsApp with your dates and we'll give you the best price available.",
+        'footer.desc':'Premium car rental in Phuket since 2015. Clean cars, transparent prices, delivered to your door.',
+        'footer.delivery':'Delivery Areas','footer.services':'Services','footer.contact':'Contact',
+        'svc.daily':'Daily rental','svc.weekly':'Weekly rental','svc.monthly':'Monthly rental',
+        'svc.airport':'Airport pickup','svc.hotel':'Hotel delivery',
+        'footer.copy':'© 2024 MK Carrent Phuket. All rights reserved.',
+        'footer.privacy':'Privacy Policy','footer.terms':'Terms of Service',
+      },
+      th: {
+        'nav.cars':'รถยนต์','nav.reviews':'รีวิว','nav.faq':'FAQ',
+        'nav.about':'เกี่ยวกับ','nav.cta':'ตรวจสอบรถว่าง',
+        'hero.h1':'เช่ารถ<br>พรีเมียม <span>ใน</span><br>ภูเก็ต',
+        'hero.sub':'เราอยากให้คุณเดินทางสะดวกสบาย — รถสะอาด ราคาโปร่งใส และส่งตรงถึงโรงแรมของคุณ',
+        'tab.daily':'รายวัน','tab.weekly':'รายสัปดาห์','tab.monthly':'รายเดือน',
+        'label.pickup_loc':'สถานที่รับรถ','label.cartype':'ประเภทรถ',
+        'label.pickup_date':'วันที่รับรถ','label.return_date':'วันที่คืนรถ',
+        'btn.search':'ค้นหารถที่ว่าง →',
+        'trust1.title':'ส่งฟรีถึงโรงแรม',
+        'trust1.desc':'เราส่งรถถึงโรงแรม วิลล่า หรือสนามบินของคุณ — ทุกที่บนเกาะ',
+        'trust2.title':'มีประกันภัยครอบคลุม',
+        'trust2.desc':'ประกันภัยบุคคลที่สามเต็มรูปแบบทุกครั้ง ไม่มีเซอร์ไพรส์ ไม่มีช่องโหว่',
+        'trust3.title':'บริการ 24/7',
+        'trust3.desc':'มีเจ้าหน้าที่พร้อมตลอด 24 ชั่วโมง ยางแบนตีสองก็ไม่มีปัญหา',
+        'trust4.title':'ไม่มีค่าใช้จ่ายแอบแฝง',
+        'trust4.desc':'ราคาที่แจ้งคือราคาสุดท้าย ไม่มีค่าใช้จ่ายเพิ่มเติมตอนรับหรือคืนรถ',
+        'trust5.title':'รับรถพร้อมน้ำมันเต็มถัง',
+        'trust5.desc':'รถทุกคันส่งพร้อมน้ำมันเต็มถัง คืนเต็มถัง หรือเราคิดส่วนต่างให้',
+        'cat.label':'เลือกตามประเภท','cat.title':'ประเภทรถ',
+        'fleet.label':'รถของเรา','fleet.title':'รถที่พร้อมให้เช่า',
+        'fleet.viewall':'ดูทั้งหมด →',
+        'tag.economy':'ประหยัด','tag.compact':'กลาง','tag.mpv':'MPV','tag.popular':'ยอดนิยม',
+        'fleet.seats':'ที่นั่ง','fleet.bags':'กระเป๋า','fleet.perday':'ต่อวัน',
+        'btn.booknow':'จองเลย',
+        'fleet.more.title':'ต้องการรถอื่น?',
+        'fleet.more.sub':'สอบถามเรา — เราหารถที่ใช่สำหรับทริปของคุณ',
+        'btn.chat':'แชทกับเรา',
+        'promo.badge':'⚡ ตอบกลับทันทีทาง WhatsApp',
+        'promo.title':'จองรถของคุณ<br>ส่งฟรีถึงโรงแรม<br>ที่คุณพัก',
+        'btn.wa':'💬 จองทาง WhatsApp','btn.call':'📞 โทรหาเรา',
+        'rev.label':'ลูกค้าพูดถึงเรา','rev.title':'รีวิวจากลูกค้า',
+        'rev.rating':'/ 5.0 · 200+ รีวิว',
+        'rev1':'"เช่ารถง่ายที่สุดที่เคยทำ ส่งข้อความทาง WhatsApp รถถึงโรงแรมเช้าวันรุ่งขึ้น สะอาด ดูแลดี ตรงตามที่บอก"',
+        'rev2':'"ใช้บริการ MK Carrent 3 สัปดาห์ระหว่าง Work Remote ที่ภูเก็ต ราคาดีมากสำหรับระยะยาว ตอบเร็วมาก และเมื่อมีปัญหาเล็กน้อยก็ช่วยทันที"',
+        'rev3':'"ใช้บริการ MK Carrent เป็นครั้งที่สอง รถส่งตรงเวลา สะอาด เติมน้ำมันเต็ม กระบวนการง่าย ราคาเป็นธรรม จะใช้อีกแน่นอนครั้งหน้า"',
+        'faq.label':'FAQ','faq.title':'คำถามที่พบบ่อย',
+        'faq1.q':'ต้องใช้เอกสารอะไรบ้างในการเช่ารถ?',
+        'faq1.a':'ต้องมีใบขับขี่ที่ยังไม่หมดอายุและหนังสือเดินทาง ใบขับขี่สากลแนะนำแต่ไม่บังคับสำหรับการเดินทางระยะสั้น เราจะยืนยันข้อกำหนดเมื่อคุณจอง',
+        'faq2.q':'ส่งรถที่สนามบินได้ไหม?',
+        'faq2.a':'ได้ — เราส่งรถถึงสนามบินภูเก็ตนานาชาติและโรงแรมหรือวิลล่าใดก็ได้บนเกาะ แจ้งสถานที่และเวลาที่ต้องการตอนจอง',
+        'faq3.q':'ราคารวมประกันภัยหรือเปล่า?',
+        'faq3.a':'รวม การเช่าทุกครั้งรวมประกันภัยบุคคลที่สามเต็มรูปแบบ ราคาที่แจ้งคือราคาสุดท้าย ไม่มีค่าเพิ่มสำหรับประกัน ส่ง หรือน้ำมัน',
+        'faq4.q':'มีส่วนลดสำหรับการเช่าระยะยาวไหม?',
+        'faq4.a':'มี สำหรับการเช่า 7 วันขึ้นไปเรามีราคาพิเศษ ติดต่อเราทาง WhatsApp พร้อมวันที่ของคุณ',
+        'footer.desc':'บริการเช่ารถพรีเมียมในภูเก็ตตั้งแต่ปี 2015 รถสะอาด ราคาโปร่งใส ส่งถึงประตูคุณ',
+        'footer.delivery':'พื้นที่จัดส่ง','footer.services':'บริการ','footer.contact':'ติดต่อเรา',
+        'svc.daily':'เช่ารายวัน','svc.weekly':'เช่ารายสัปดาห์','svc.monthly':'เช่ารายเดือน',
+        'svc.airport':'รับส่งสนามบิน','svc.hotel':'ส่งถึงโรงแรม',
+        'footer.copy':'© 2024 MK Carrent Phuket. สงวนลิขสิทธิ์',
+        'footer.privacy':'นโยบายความเป็นส่วนตัว','footer.terms':'ข้อกำหนดการใช้บริการ',
+      },
+      ru: {
+        'nav.cars':'Автомобили','nav.reviews':'Отзывы','nav.faq':'FAQ',
+        'nav.about':'О нас','nav.cta':'Проверить наличие',
+        'hero.h1':'Аренда<br>авто <span>на</span><br>Пхукете',
+        'hero.sub':'Мы заботимся о вашем комфорте — чистые машины, прозрачные цены и доставка прямо в ваш отель.',
+        'tab.daily':'Посуточно','tab.weekly':'Понедельно','tab.monthly':'Помесячно',
+        'label.pickup_loc':'Место получения','label.cartype':'Тип автомобиля',
+        'label.pickup_date':'Дата получения','label.return_date':'Дата возврата',
+        'btn.search':'Найти доступные авто →',
+        'trust1.title':'Бесплатная доставка',
+        'trust1.desc':'Привезём машину в ваш отель, виллу или аэропорт — в любую точку острова.',
+        'trust2.title':'Страховка включена',
+        'trust2.desc':'Полная страховка гражданской ответственности на каждую аренду. Никаких сюрпризов.',
+        'trust3.title':'Поддержка 24/7',
+        'trust3.desc':'Живой человек на связи круглосуточно. Прокол в час ночи? Мы рядом.',
+        'trust4.title':'Никаких скрытых платежей',
+        'trust4.desc':'Цена, которую мы называем — это окончательная цена. Никаких доплат.',
+        'trust5.title':'Полный бак при получении',
+        'trust5.desc':'Каждая машина приезжает с полным баком. Вернуть полным — или доплатить разницу.',
+        'cat.label':'ВЫБРАТЬ ПО ТИПУ','cat.title':'Категории авто',
+        'fleet.label':'НАШ АВТОПАРК','fleet.title':'Доступные автомобили',
+        'fleet.viewall':'Все авто →',
+        'tag.economy':'Эконом','tag.compact':'Компакт','tag.mpv':'MPV','tag.popular':'Топ выбор',
+        'fleet.seats':'мест','fleet.bags':'сумок','fleet.perday':'в день',
+        'btn.booknow':'Забронировать',
+        'fleet.more.title':'Нужен другой вариант?',
+        'fleet.more.sub':'Спросите нас — подберём нужный автомобиль для вашей поездки.',
+        'btn.chat':'Написать нам',
+        'promo.badge':'⚡ Мгновенный ответ в WhatsApp',
+        'promo.title':'Забронируйте авто<br>с бесплатной доставкой<br>в ваш отель',
+        'btn.wa':'💬 Написать в WhatsApp','btn.call':'📞 Позвонить нам',
+        'rev.label':'Что говорят клиенты','rev.title':'Отзывы клиентов',
+        'rev.rating':'/ 5.0 · 200+ отзывов',
+        'rev1':'"Самая простая аренда в моей жизни. Написал в WhatsApp — машина была у отеля утром следующего дня. Чистая, ухоженная, всё как описано."',
+        'rev2':'"Арендовал у MK Carrent на 3 недели, работая удалённо на Пхукете. Отличная цена, очень отзывчивые, при небольшой проблеме помогли сразу."',
+        'rev3':'"Беру здесь уже второй раз. Машина доставлена вовремя, чистая, с полным баком. Простой процесс, честная цена. Возьму снова в следующей поездке."',
+        'faq.label':'FAQ','faq.title':'Частые вопросы',
+        'faq1.q':'Какие документы нужны для аренды?',
+        'faq1.a':'Нужны действующие водительские права и паспорт. Международное водительское удостоверение рекомендуется, но для краткосрочных поездок обычно не требуется. Мы уточним требования при бронировании.',
+        'faq2.q':'Доставляете ли вы в аэропорт?',
+        'faq2.a':'Да — доставляем в международный аэропорт Пхукета и в любой отель или виллу на острове. Просто укажите место и время при бронировании.',
+        'faq3.q':'Входит ли страховка в стоимость?',
+        'faq3.a':'Да. Все аренды включают полную страховку гражданской ответственности. Цена, которую мы называем — это финальная цена. Без доплат за страховку, доставку или топливо.',
+        'faq4.q':'Есть ли скидки на длительную аренду?',
+        'faq4.a':'Да — при аренде от 7 дней и более мы предлагаем сниженные тарифы. Напишите нам в WhatsApp с вашими датами — дадим лучшую цену.',
+        'footer.desc':'Аренда авто на Пхукете с 2015 года. Чистые машины, прозрачные цены, доставка до двери.',
+        'footer.delivery':'Зоны доставки','footer.services':'Услуги','footer.contact':'Контакты',
+        'svc.daily':'Посуточная аренда','svc.weekly':'Понедельная аренда','svc.monthly':'Помесячная аренда',
+        'svc.airport':'Трансфер аэропорт','svc.hotel':'Доставка в отель',
+        'footer.copy':'© 2024 MK Carrent Phuket. Все права защищены.',
+        'footer.privacy':'Политика конфиденциальности','footer.terms':'Условия использования',
+      }
+    };
+
+    function setLang(lang) {
+      const t = translations[lang];
+      if (!t) return;
+
+      // Simple text elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      // HTML elements (with inner HTML like <br> <span>)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      // Repeated elements — fleet tags (store original EN in data-orig)
+      document.querySelectorAll('.fleet-tag').forEach(el => {
+        if (!el.dataset.orig) el.dataset.orig = el.textContent.trim();
+        const orig = el.dataset.orig;
+        const map = { 'Economy': t['tag.economy'], 'Compact': t['tag.compact'],
+                      'MPV': t['tag.mpv'], 'Most popular': t['tag.popular'] };
+        if (map[orig]) el.textContent = map[orig];
+      });
+
+      // Repeated — Book Now buttons
+      document.querySelectorAll('.fleet-book').forEach(btn => {
+        if (!btn.dataset.origText) btn.dataset.origText = btn.textContent.trim();
+        if (btn.dataset.origText === 'Book Now' || btn.dataset.origText === t['btn.booknow'] ||
+            ['จองเลย','Забронировать'].includes(btn.dataset.origText)) {
+          btn.textContent = t['btn.booknow'];
+        }
+      });
+
+      // Repeated — per day
+      document.querySelectorAll('.fleet-price-day').forEach(el => {
+        el.textContent = t['fleet.perday'];
+      });
+
+      // Seats / bags in specs
+      document.querySelectorAll('.fleet-spec').forEach(el => {
+        const txt = el.textContent.trim();
+        const seatsMatch = txt.match(/^(\d+)\s+(seats|ที่นั่ง|мест)$/);
+        const bagsMatch  = txt.match(/^(\d+)\s+(bags|กระเป๋า|сумок)$/);
+        if (seatsMatch) el.innerHTML = el.innerHTML.replace(/(seats|ที่นั่ง|мест)/, t['fleet.seats']);
+        if (bagsMatch)  el.innerHTML = el.innerHTML.replace(/(bags|กระเป๋า|сумок)/, t['fleet.bags']);
+      });
+
+      // Update active lang button
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+
+      // Save preference
+      localStorage.setItem('mk_lang', lang);
+      document.documentElement.lang = lang;
+    }
+
+    // Auto-apply saved language
+    (function() {
+      const saved = localStorage.getItem('mk_lang') || 'en';
+      if (saved !== 'en') setLang(saved);
+    })();
+
+  </script>
+</body>
+</html>
