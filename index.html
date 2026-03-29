@@ -246,15 +246,10 @@
     }
     .hero-car-img {
       width: 100%; display: block;
-      -webkit-mask-image:
-        linear-gradient(to right,  transparent 0%, black 22%, black 82%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%);
-      -webkit-mask-composite: destination-in;
-      mask-image:
-        linear-gradient(to right,  transparent 0%, black 22%, black 82%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%);
-      mask-composite: intersect;
-      filter: brightness(0.9) contrast(1.05);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 70%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 18%, black 70%, transparent 100%);
+      opacity: 0.88;
+      filter: brightness(0.92) contrast(1.03);
     }
     .hero-car-glow {
       position: absolute; bottom: -60px; left: 20%; right: 20%; height: 120px;
