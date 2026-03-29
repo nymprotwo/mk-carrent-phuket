@@ -70,11 +70,11 @@
 
     /* ═══ HERO ═══════════════════════════════════ */
     .hero {
-      min-height: 100vh;
+      min-height: auto;
       background: linear-gradient(180deg, #0B0F1A 0%, #0F172A 55%, #111827 100%);
       display: grid; grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 100px 6% 0;
+      padding: 72px 6% 0;
       position: relative; overflow: hidden;
     }
 
@@ -86,7 +86,7 @@
     }
 
 
-    .hero-left { position: relative; z-index: 2; padding-right: 48px; padding-bottom: 80px; }
+    .hero-left { position: relative; z-index: 2; padding-right: 48px; padding-bottom: 40px; }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -97,7 +97,7 @@
     .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
 
     .hero h1 {
-      font-size: clamp(44px, 5.5vw, 72px); font-weight: 800;
+      font-size: clamp(36px, 4.2vw, 58px); font-weight: 800;
       color: var(--white); line-height: 1.05; letter-spacing: -2.5px;
       margin-bottom: 24px;
     }
