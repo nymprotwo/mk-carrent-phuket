@@ -110,6 +110,80 @@
     }
 
     /* Booking card */
+    /* ═══ WA CTA CARD (replaces booking form) ═══════════ */
+    .wa-cta-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 20px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 480px;
+      backdrop-filter: blur(8px);
+    }
+    .wa-cta-title {
+      font-size: clamp(20px, 2vw, 26px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+    .wa-cta-bullets {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .wa-cta-bullets li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wa-cta-bullets li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #25d366;
+      flex-shrink: 0;
+    }
+    .wa-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25d366;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    }
+    .wa-cta-btn:hover { background: #1eba57; transform: translateY(-2px); }
+    .wa-cta-trust {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .wa-cta-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #25d366;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
     .booking-card {
       background: var(--white);
       border-radius: 20px;
@@ -817,52 +891,23 @@
       <h1 data-i18n-html="hero.h1"><span class="accent">Car rental</span> in Phuket —<br>fast, simple, <span>stress-free</span></h1>
       <p class="hero-sub" data-i18n="hero.sub">Clean, insured cars. Fast delivery anywhere in Phuket. No hidden fees.</p>
 
-      <div class="booking-card">
-        <div class="booking-tabs">
-          <button class="booking-tab active" data-i18n="tab.daily">Daily</button>
-          <button class="booking-tab" data-i18n="tab.weekly">Weekly</button>
-          <button class="booking-tab" data-i18n="tab.monthly">Monthly</button>
+      <div class="wa-cta-card">
+        <div class="wa-cta-title">Book your car in seconds</div>
+        <ul class="wa-cta-bullets">
+          <li>From 800฿ per day</li>
+          <li>Free delivery anywhere in Phuket</li>
+          <li>Better price for longer rentals</li>
+        </ul>
+        <a class="wa-cta-btn"
+           href="https://wa.me/66826488253?text=Hi%2C%20I'm%20interested%20in%20renting%20a%20car.%20Can%20you%20send%20me%20available%20options%20and%20prices%3F"
+           target="_blank">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Contact on WhatsApp
+        </a>
+        <div class="wa-cta-trust">
+          <span class="wa-cta-dot"></span>
+          Real person replies in minutes
         </div>
-        <div class="booking-fields">
-          <div class="booking-field">
-            <label data-i18n="label.pickup_loc">Pick-up Location</label>
-            <select id="loc-from">
-              <option value="">Select location...</option>
-              <option>Phuket Airport (HKT)</option>
-              <option>Patong Beach</option>
-              <option>Kata / Karon</option>
-              <option>Rawai / Nai Harn</option>
-              <option>Kamala</option>
-              <option>Phuket Town</option>
-              <option>My hotel (specify)</option>
-            </select>
-          </div>
-          <div class="booking-field">
-            <label data-i18n="label.cartype">Car Type</label>
-            <select id="car-type">
-              <option value="">Any car</option>
-              <option>Economy — Toyota Yaris</option>
-              <option>Economy — Toyota Vios</option>
-              <option>Economy — Toyota Ativ</option>
-              <option>Compact — Suzuki Swift</option>
-              <option>Compact — Honda City</option>
-              <option>Compact — MG5</option>
-              <option>MPV — Mitsubishi Xpander</option>
-              <option>MPV — Toyota Veloz</option>
-            </select>
-          </div>
-          <div class="booking-field">
-            <label data-i18n="label.pickup_date">Pick-up Date</label>
-            <input type="text" id="date-from" placeholder="DD / MM / YYYY"
-              onfocus="this.type='date'" onblur="if(!this.value){this.type='text';this.placeholder='DD / MM / YYYY'}" />
-          </div>
-          <div class="booking-field">
-            <label data-i18n="label.return_date">Return Date</label>
-            <input type="text" id="date-to" placeholder="DD / MM / YYYY"
-              onfocus="this.type='date'" onblur="if(!this.value){this.type='text';this.placeholder='DD / MM / YYYY'}" />
-          </div>
-        </div>
-        <button class="booking-submit" data-i18n="btn.search" onclick="searchCar()">Search Available Cars →</button>
       </div>
     </div>
 
