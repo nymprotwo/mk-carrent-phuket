@@ -812,22 +812,57 @@
     }
 
     @media (max-width: 768px) {
+      /* ── Nav ── */
       nav ul { display: none; }
-      .hero { grid-template-columns: 1fr; padding-top: 90px; }
-      .hero-right { display: flex; order: -1; max-height: 200px; overflow: hidden; }
-      .hero-car-img { max-height: 200px; object-fit: contain; }
-      .hero-left { padding-right: 0; }
+      nav { padding: 0 4%; }
+      .nav-logo-icon { width: 44px; height: 44px; font-size: 18px; border-radius: 10px; }
+      .nav-logo-name { font-size: 17px; }
+      .nav-logo-sub { display: none; }
+      .nav-cta {
+        font-size: 12px; padding: 8px 14px;
+        white-space: nowrap; overflow: hidden;
+        max-width: 130px; text-overflow: ellipsis;
+      }
+      .lang-switcher { margin-left: 6px; }
+      .lang-btn { padding: 4px 7px; font-size: 10px; }
+
+      /* ── Hero ── */
+      .hero { grid-template-columns: 1fr; padding-top: 80px; }
+      .hero-right { display: none; }
+      .hero-left { padding-right: 0; padding-bottom: 32px; }
+      .wa-cta-card { padding: 24px 20px; }
+
+      /* ── Trust strip ── */
+      .trust-strip {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        padding: 24px 4%;
+      }
+      .trust-item {
+        padding: 14px 12px;
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .trust-item:nth-child(2n) { border-right: none; }
+      .trust-item:nth-child(n+4) { border-bottom: none; }
+      .trust-item:last-child { grid-column: span 2; border-right: none; border-bottom: none; }
+
+      /* ── Fleet ── */
+      .fleet-grid { grid-template-columns: 1fr; }
+      .fleet-card { grid-template-columns: 1fr; }
+      .fleet-car-img-wrap { height: 220px; }
+      .fleet-car-img { object-position: center 30%; }
+
+      /* ── Other ── */
       .booking-fields { grid-template-columns: 1fr; }
       .booking-field.full { grid-column: 1; }
       .categories-grid { grid-template-columns: repeat(2, 1fr); }
-      .fleet-card { grid-template-columns: 1fr; }
-      .fleet-car-img-wrap { height: 160px; }
       .features-grid { grid-template-columns: 1fr; }
       .feature-item { border-right: none; border-top: 1px solid rgba(255,255,255,0.08); }
       .feature-item:first-child { border-top: none; }
       .review-card { width: 280px; }
       .footer-top { grid-template-columns: 1fr; }
-      .trust-item { padding: 10px 16px; }
+      .duration-grid { grid-template-columns: 1fr; }
     }
 
     /* ═══ LANG SWITCHER ═══════════════════════════════ */
