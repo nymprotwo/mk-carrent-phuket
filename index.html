@@ -812,7 +812,8 @@
     @media (max-width: 768px) {
       nav ul { display: none; }
       .hero { grid-template-columns: 1fr; padding-top: 90px; }
-      .hero-right { display: none; }
+      .hero-right { display: flex; order: -1; max-height: 200px; overflow: hidden; }
+      .hero-car-img { max-height: 200px; object-fit: contain; }
       .hero-left { padding-right: 0; }
       .booking-fields { grid-template-columns: 1fr; }
       .booking-field.full { grid-column: 1; }
@@ -913,6 +914,7 @@
 
     <div class="hero-right">
       <div class="hero-car-wrap">
+        <img class="hero-car-img" src="img-hero.png" alt="Premium rental car in Phuket">
         <div class="hero-car-glow"></div>
       </div>
     </div>
@@ -1074,10 +1076,7 @@
       </div>
       <!-- Toyota Ativ -->
       <div class="fleet-card">
-        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
-          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
-          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
-        </div></div>
+        <div class="fleet-car-img-wrap"><img class="fleet-car-img" src="img-toyota-ativ.png" alt="Toyota Ativ" loading="lazy"></div>
         <div class="fleet-body">
           <div>
             <span class="fleet-tag">Economy</span>
@@ -1112,10 +1111,7 @@
       </div>
       <!-- Suzuki Swift -->
       <div class="fleet-card">
-        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
-          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
-          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
-        </div></div>
+        <div class="fleet-car-img-wrap"><img class="fleet-car-img" src="img-suzuki-swift.png" alt="Suzuki Swift" loading="lazy"></div>
         <div class="fleet-body">
           <div>
             <span class="fleet-tag">Compact</span>
@@ -1150,10 +1146,7 @@
       </div>
       <!-- Honda City -->
       <div class="fleet-card">
-        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
-          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
-          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
-        </div></div>
+        <div class="fleet-car-img-wrap"><img class="fleet-car-img" src="img-honda-city.png" alt="Honda City" loading="lazy"></div>
         <div class="fleet-body">
           <div>
             <span class="fleet-tag">Comfort</span>
@@ -1188,10 +1181,7 @@
       </div>
       <!-- MG5 -->
       <div class="fleet-card">
-        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
-          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
-          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
-        </div></div>
+        <div class="fleet-car-img-wrap"><img class="fleet-car-img" src="img-mg5.png" alt="MG5" loading="lazy"></div>
         <div class="fleet-body">
           <div>
             <span class="fleet-tag">Comfort</span>
@@ -1226,10 +1216,7 @@
       </div>
       <!-- Mitsubishi Xpander -->
       <div class="fleet-card">
-        <div class="fleet-car-img-wrap"><div class="fleet-car-placeholder">
-          <svg width="44" height="44" fill="none" stroke="#c8cdd6" stroke-width="1.2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M5 7V5a1 1 0 011-1h12a1 1 0 011 1v2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
-          <span style="font-size:11px;color:#bec3cc;margin-top:6px;font-weight:500;letter-spacing:0.3px">Add photo</span>
-        </div></div>
+        <div class="fleet-car-img-wrap"><img class="fleet-car-img" src="img-xpander.png" alt="Mitsubishi Xpander" loading="lazy"></div>
         <div class="fleet-body">
           <div>
             <span class="fleet-tag">Family</span>
