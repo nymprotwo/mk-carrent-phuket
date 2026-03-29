@@ -818,11 +818,8 @@
       .nav-logo-icon { width: 44px; height: 44px; font-size: 18px; border-radius: 10px; }
       .nav-logo-name { font-size: 17px; }
       .nav-logo-sub { display: none; }
-      .nav-cta {
-        font-size: 12px; padding: 8px 14px;
-        white-space: nowrap; overflow: hidden;
-        max-width: 130px; text-overflow: ellipsis;
-      }
+      .nav-cta { font-size: 12px; padding: 8px 14px; }
+      .nav-cta-full { display: none; }
       .lang-switcher { margin-left: 6px; }
       .lang-btn { padding: 4px 7px; font-size: 10px; }
 
@@ -913,7 +910,7 @@
       <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
       <li><a href="#contact" data-i18n="nav.about">About</a></li>
     </ul>
-    <a href="https://wa.me/66826488253" class="nav-cta" data-i18n="nav.cta">Contact on WhatsApp</a>
+    <a href="https://wa.me/66826488253" class="nav-cta" data-i18n="nav.cta"><span class="nav-cta-full">Contact on </span>WhatsApp</a>
   <div class="lang-switcher">
     <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
     <button class="lang-btn" data-lang="th" onclick="setLang('th')">TH</button>
