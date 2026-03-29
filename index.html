@@ -57,6 +57,8 @@
     nav ul { display: flex; gap: 32px; }
     nav ul a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .2s; }
     nav ul a:hover { color: var(--text); }
+    nav ul a.nav-deals { color: var(--text); font-weight: 700; }
+    nav ul a.nav-deals:hover { color: var(--blue); }
 
     .nav-cta {
       background: #25d366; color: var(--white);
@@ -794,6 +796,7 @@
     </div>
     <ul>
       <li><a href="#fleet" data-i18n="nav.cars">Cars</a></li>
+      <li><a href="#deals" class="nav-deals">🔥 Long-stay deals</a></li>
       <li><a href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
       <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
       <li><a href="#contact" data-i18n="nav.about">About</a></li>
@@ -1257,7 +1260,7 @@
   </section>
 
   <!-- RENTAL DURATION -->
-  <section class="duration-section">
+  <section class="duration-section" id="deals">
     <div class="duration-head">
       <h2 class="duration-title">Better price for longer rentals</h2>
       <p class="duration-sub">The longer you rent — the better the deal</p>
