@@ -487,8 +487,7 @@
     /* ═══ RENTAL DURATION SECTION ══════════════════════ */
     .duration-section {
       padding: 80px 6%;
-      background: #F3F4F6;
-      border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, #0F172A 0%, #111827 100%);
     }
     .duration-head {
       text-align: center;
@@ -497,14 +496,14 @@
     .duration-title {
       font-size: clamp(24px, 2.8vw, 36px);
       font-weight: 800;
-      color: var(--text);
+      color: #fff;
       letter-spacing: -1px;
       line-height: 1.2;
       margin-bottom: 10px;
     }
     .duration-sub {
       font-size: 15px;
-      color: var(--muted);
+      color: rgba(255,255,255,0.45);
     }
     .duration-grid {
       display: grid;
@@ -514,26 +513,29 @@
       margin: 0 auto;
     }
     .duration-card {
-      background: var(--white);
-      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
       border-radius: 16px;
       padding: 36px 28px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      transition: transform .2s, box-shadow .2s;
+      transition: transform .2s, box-shadow .2s, background .2s;
       position: relative;
     }
     .duration-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
     }
     .duration-card.featured {
       border-color: var(--blue);
-      box-shadow: 0 0 0 1px var(--blue), 0 8px 24px rgba(26,86,219,0.10);
+      background: rgba(26,86,219,0.12);
+      box-shadow: 0 0 0 1px var(--blue), 0 8px 24px rgba(26,86,219,0.15);
     }
     .duration-card.featured:hover {
-      box-shadow: 0 0 0 1px var(--blue), 0 16px 40px rgba(26,86,219,0.15);
+      background: rgba(26,86,219,0.18);
+      box-shadow: 0 0 0 1px var(--blue), 0 16px 40px rgba(26,86,219,0.2);
     }
     .duration-badge {
       position: absolute;
@@ -553,16 +555,16 @@
     .duration-days {
       font-size: 32px;
       font-weight: 900;
-      color: var(--text);
+      color: rgba(255,255,255,0.9);
       letter-spacing: -1.5px;
       line-height: 1;
     }
     .duration-card.featured .duration-days {
-      color: var(--blue);
+      color: #60a5fa;
     }
     .duration-desc {
       font-size: 14px;
-      color: var(--muted);
+      color: rgba(255,255,255,0.45);
       line-height: 1.6;
     }
     .duration-cta {
@@ -572,10 +574,10 @@
       gap: 6px;
       font-size: 13px;
       font-weight: 600;
-      color: var(--muted);
+      color: rgba(255,255,255,0.35);
       text-decoration: none;
       padding-top: 8px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid rgba(255,255,255,0.08);
       transition: color .2s;
       cursor: pointer;
       background: none;
@@ -583,9 +585,10 @@
       border-right: none;
       border-bottom: none;
     }
-    .duration-cta:hover { color: var(--blue); }
+    .duration-cta:hover { color: rgba(255,255,255,0.8); }
     .duration-card.featured .duration-cta {
-      color: var(--blue);
+      color: #60a5fa;
+      border-top-color: rgba(26,86,219,0.3);
     }
     @media (max-width: 768px) {
       .duration-grid { grid-template-columns: 1fr; }
